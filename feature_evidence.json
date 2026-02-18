@@ -1,0 +1,23 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-vite-configuration-so-vercel-deployments-build-with-a-root-base-path-while-downloadable-static-subdirectory-deployments-continue-to-build-with-a-relative-base-path-ensuring-the-deployed-app-does-not-render-a-blank-page-and-all-js-css-assets-resolve-correctly-in-both-modes",
+      "featureTitle": "Update the Vite configuration so Vercel deployments build with a root base path (\"/\") while downloadable/static subdirectory deployments continue to build with a relative base path (\"./\"), ensuring the deployed app does not render a blank page and all JS/CSS/assets resolve correctly in both modes.",
+      "files": [
+        "frontend/vite.config.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-56"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
