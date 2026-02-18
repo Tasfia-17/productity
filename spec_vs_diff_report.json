@@ -1,0 +1,75 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T13:05:44.229Z",
+  "summary": "REQ-56 (environment-based Vite base path) appears implemented via `base: process.env.VERCEL ? '/' : './'` in `frontend/vite.config.ts`. However, the diff summary indicates substantial unrelated frontend changes (new/expanded UI behaviors and many new sections) and also indicates edits to an explicitly immutable file (`frontend/src/main.tsx`), which violates the stated constraints.",
+  "missing_requirements": [
+    {
+      "id": "REQ-56",
+      "requirement": "When built for a downloadable/static-host subdirectory scenario, assets referenced via import.meta.env.BASE_URL (through publicAssetUrl(...)) still resolve correctly when served from a non-root path.",
+      "reason": "While `base` is set to `'./'` for non-Vercel builds, the diff summary does not show (or confirm) that `publicAssetUrl(...)` uses `import.meta.env.BASE_URL` correctly, nor that this behavior is preserved end-to-end. The only concrete shown change is the Vite `base` setting; the helper implementation is not evidenced in the provided diff summary.",
+      "evidence": [
+        "frontend/vite.config.ts",
+        "frontend-file-summaries.txt (truncated)"
+      ]
+    },
+    {
+      "requirement": "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+      "reason": "The diff summary explicitly describes changes to `frontend/src/main.tsx` (an immutable path), indicating the constraint was violated.",
+      "evidence": [
+        "frontend-file-summaries.txt (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Removed/disabled Internet Identity provider/authentication wiring from the app entry and converted the app to a static render with only QueryClientProvider.",
+      "reason": "BuildRequest is narrowly focused on Vite base-path handling for Vercel vs subdirectory/static deployments and explicitly lists related frontend files as immutable; it does not request auth/provider removal or app architecture changes.",
+      "evidence": [
+        "frontend-file-summaries.txt (truncated) -> frontend/src/main.tsx",
+        "frontend-file-summaries.txt (truncated) -> frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Added a full-screen curtain intro overlay requiring first user interaction and related scroll-lock/animation changes.",
+      "reason": "Explicitly outside the deployment/base-path scope; also called out as a new behavior in project state summary.",
+      "evidence": [
+        "project_state.json (truncated)",
+        "frontend-file-summaries.txt (truncated) -> frontend/src/index.css",
+        "frontend-file-summaries.txt (truncated) -> frontend/src/components/TempleLayout.tsx"
+      ]
+    },
+    {
+      "description": "Implemented infinite-scroll behavior by duplicating/auto-repeating the entire single-page content so the page never ends.",
+      "reason": "Not requested; BuildRequest explicitly limits scope to fixing blank-load via Vite base path and forbids unrelated feature additions.",
+      "evidence": [
+        "project_state.json (truncated)",
+        "frontend-file-summaries.txt (truncated) -> frontend/src/components/TempleLayout.tsx"
+      ]
+    },
+    {
+      "description": "Added random popup memes, dual background audio, and multiple new interactive/humor modules across many new/expanded sections.",
+      "reason": "Non-goals explicitly disallow adding new UI/sections/features unrelated to deployment/base-path handling.",
+      "evidence": [
+        "frontend-file-summaries.txt (truncated) -> frontend/src/components/TempleLayout.tsx",
+        "frontend-file-summaries.txt (truncated) -> frontend/src/components/departments/InstitutionOfAdvancedProcrastination.tsx",
+        "frontend-file-summaries.txt (truncated) -> multiple new/expanded sections under frontend/src/components/departments/sections/*",
+        "project_state.json (truncated)"
+      ]
+    },
+    {
+      "description": "Major redesign/extension of styling and Tailwind configuration (new fonts, keyframes, intensified animations, revelation/overlay effects) beyond what is needed for base-path handling.",
+      "reason": "Not requested and unrelated to deployment/base-path; conflicts with non-goals about unrelated UI work.",
+      "evidence": [
+        "frontend-file-summaries.txt (truncated) -> frontend/src/index.css",
+        "frontend-file-summaries.txt (truncated) -> frontend/tailwind.config.js"
+      ]
+    }
+  ],
+  "confidence": 0.68,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/vite.config.ts",
+    "project_state.json"
+  ]
+}
