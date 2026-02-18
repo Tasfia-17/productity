@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd build-template/src/frontend && pnpm install && pnpm run build:skip-bindings",
+  "outputDirectory": "build-template/src/frontend/dist",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
