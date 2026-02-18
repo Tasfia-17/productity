@@ -1,0 +1,9 @@
+{
+  "name": "temple-of-productivi-tea",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd build-template/src/frontend && npm install && npm run build:skip-bindings",
+    "install": "cd build-template/src/frontend && npm install"
+  }
+}
