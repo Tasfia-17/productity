@@ -1,8 +1,7 @@
 {
-  "buildCommand": "cd build-template/src/frontend && npm install && npm run build:skip-bindings",
+  "buildCommand": "cd build-template/src/frontend && npm run build:skip-bindings",
   "outputDirectory": "build-template/src/frontend/dist",
-  "installCommand": "cd build-template/src/frontend && npm install",
-  "framework": null,
+  "installCommand": "npm install --prefix build-template/src/frontend",
   "rewrites": [
     {
       "source": "/(.*)",
