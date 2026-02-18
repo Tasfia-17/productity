@@ -59,7 +59,7 @@ export default function JesusMicroCameoOverlay() {
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(${'/assets/generated/golden-flash-overlay.dim_1920x1080.png')})`,
+          backgroundImage: `url(${'/assets/generated/golden-flash-overlay.dim_1920x1080.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           animation: 'ultraBrightFlash 0.8s ease-out',
@@ -76,7 +76,7 @@ export default function JesusMicroCameoOverlay() {
         }}
       >
         <img 
-          src={'/assets/generated/jesus-cloud-overlay.dim_1400x1400.png')}
+          src={'/assets/generated/jesus-cloud-overlay.dim_1400x1400.png'}
           alt=""
           className="max-w-[60vw] max-h-[60vh] object-contain"
           style={{

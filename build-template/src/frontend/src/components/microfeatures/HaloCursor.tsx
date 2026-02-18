@@ -31,7 +31,7 @@ export default function HaloCursor() {
             }}
         >
             <img
-                src={'/assets/generated/halo-cursor-ring.dim_512x512.png')}
+                src={'/assets/generated/halo-cursor-ring.dim_512x512.png'}
                 alt=""
                 className="w-16 h-16 opacity-60"
             />

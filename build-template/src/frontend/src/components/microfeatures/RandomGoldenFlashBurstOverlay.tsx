@@ -70,7 +70,7 @@ export default function RandomGoldenFlashBurstOverlay() {
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(${'/assets/generated/golden-flash-overlay.dim_1920x1080.png')})`,
+          backgroundImage: `url(${'/assets/generated/golden-flash-overlay.dim_1920x1080.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(3) contrast(2) saturate(1.5)',
