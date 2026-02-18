@@ -14,3 +14,17 @@ export function publicAssetUrl(assetPath: string): string {
   const cleanBase = base.endsWith('/') ? base : `${base}/`;
   return `${cleanBase}${cleanPath}`;
 }
+
+/**
+ * Checks if an asset exists by attempting to load it
+ * @param assetPath - Path to check
+ * @returns Promise that resolves to true if asset exists
+ */
+export async function assetExists(assetPath: string): Promise<boolean> {
+  try {
+    const response = await fetch(publicAssetUrl(assetPath), { method: 'HEAD' });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}

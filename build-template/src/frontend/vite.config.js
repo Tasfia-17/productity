@@ -5,7 +5,7 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   // Use root-absolute base for Vercel, relative base for static/subdirectory deployments
-  base: process.env.VERCEL ? '/' : './',
+  base: process.env.VERCEL || process.env.VERCEL_URL ? '/' : './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
