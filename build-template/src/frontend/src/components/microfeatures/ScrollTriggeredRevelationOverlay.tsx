@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { CameoFigure } from '@/hooks/useScrollTriggeredRevelation';
-import { publicAssetUrl } from '@/utils/publicAssetUrl';
 
 interface ScrollTriggeredRevelationOverlayProps {
   isRevealing: boolean;
@@ -44,10 +43,10 @@ const productivityLessonsByFigure: Record<CameoFigure, string[]> = {
 };
 
 const figureImages: Record<CameoFigure, string> = {
-  jesus: publicAssetUrl('assets/generated/jesus-cloud-overlay.dim_1400x1400.png'),
-  satan: publicAssetUrl('assets/generated/satan-cloud-overlay.dim_1400x1400.png'),
-  kanye: publicAssetUrl('assets/generated/kanye-cloud-overlay.dim_1400x1400.png'),
-  trump: publicAssetUrl('assets/generated/trump-cloud-overlay.dim_1400x1400.png'),
+  jesus: '/assets/generated/jesus-cloud-overlay.dim_1400x1400.png'),
+  satan: '/assets/generated/satan-cloud-overlay.dim_1400x1400.png'),
+  kanye: '/assets/generated/kanye-cloud-overlay.dim_1400x1400.png'),
+  trump: '/assets/generated/trump-cloud-overlay.dim_1400x1400.png'),
 };
 
 const figureAnimations: Record<CameoFigure, string> = {
@@ -87,7 +86,7 @@ export default function ScrollTriggeredRevelationOverlay({
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(${publicAssetUrl('assets/generated/golden-flash-overlay.dim_1920x1080.png')})`,
+          backgroundImage: `url(${'/assets/generated/golden-flash-overlay.dim_1920x1080.png')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: currentFigure === 'satan' ? 0.6 : currentFigure === 'trump' ? 0.8 : 1,

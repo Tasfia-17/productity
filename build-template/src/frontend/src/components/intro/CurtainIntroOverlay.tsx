@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { publicAssetUrl } from '@/utils/publicAssetUrl';
 
 interface CurtainIntroOverlayProps {
   onDismiss: () => void;
@@ -57,7 +56,7 @@ export default function CurtainIntroOverlay({ onDismiss }: CurtainIntroOverlayPr
           <div 
             className="curtain-texture-layer"
             style={{
-              backgroundImage: `url(${publicAssetUrl('assets/generated/curtain-texture-tile-bloodred-gold.dim_2048x2048.png')})`,
+              backgroundImage: `url(${'/assets/generated/curtain-texture-tile-bloodred-gold.dim_2048x2048.png')})`,
               backgroundRepeat: 'repeat',
               backgroundSize: '512px 512px'
             }}
@@ -67,7 +66,7 @@ export default function CurtainIntroOverlay({ onDismiss }: CurtainIntroOverlayPr
           <div 
             className="curtain-folds-layer"
             style={{
-              backgroundImage: `url(${publicAssetUrl('assets/generated/curtain-folds-shadows.dim_1920x1080.png')})`,
+              backgroundImage: `url(${'/assets/generated/curtain-folds-shadows.dim_1920x1080.png')})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
@@ -77,7 +76,7 @@ export default function CurtainIntroOverlay({ onDismiss }: CurtainIntroOverlayPr
           <div 
             className="curtain-filigree-layer"
             style={{
-              backgroundImage: `url(${publicAssetUrl('assets/generated/curtain-gold-filigree-overlay.dim_1920x1080.png')})`,
+              backgroundImage: `url(${'/assets/generated/curtain-gold-filigree-overlay.dim_1920x1080.png')})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
@@ -90,7 +89,7 @@ export default function CurtainIntroOverlay({ onDismiss }: CurtainIntroOverlayPr
           <div 
             className="curtain-texture-layer"
             style={{
-              backgroundImage: `url(${publicAssetUrl('assets/generated/curtain-texture-tile-bloodred-gold.dim_2048x2048.png')})`,
+              backgroundImage: `url(${'/assets/generated/curtain-texture-tile-bloodred-gold.dim_2048x2048.png')})`,
               backgroundRepeat: 'repeat',
               backgroundSize: '512px 512px'
             }}
@@ -100,7 +99,7 @@ export default function CurtainIntroOverlay({ onDismiss }: CurtainIntroOverlayPr
           <div 
             className="curtain-folds-layer"
             style={{
-              backgroundImage: `url(${publicAssetUrl('assets/generated/curtain-folds-shadows.dim_1920x1080.png')})`,
+              backgroundImage: `url(${'/assets/generated/curtain-folds-shadows.dim_1920x1080.png')})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
@@ -110,7 +109,7 @@ export default function CurtainIntroOverlay({ onDismiss }: CurtainIntroOverlayPr
           <div 
             className="curtain-filigree-layer"
             style={{
-              backgroundImage: `url(${publicAssetUrl('assets/generated/curtain-gold-filigree-overlay.dim_1920x1080.png')})`,
+              backgroundImage: `url(${'/assets/generated/curtain-gold-filigree-overlay.dim_1920x1080.png')})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}

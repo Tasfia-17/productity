@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { useMicrofeatureEvents, MicrofeatureEvent } from '@/hooks/useMicrofeatureEvents';
 import { useAchievements } from '@/hooks/useAchievements';
-import { publicAssetUrl } from '@/utils/publicAssetUrl';
 import HaloCursor from './HaloCursor';
 import CursorSigh from './CursorSigh';
 import AchievementPanel from './AchievementPanel';

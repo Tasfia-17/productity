@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import { useScrollActivity } from '@/hooks/useScrollActivity';
-import { publicAssetUrl } from '@/utils/publicAssetUrl';
 
 /**
  * Displays ultra-bright random golden flash bursts (no figure) at randomized intervals
@@ -71,7 +70,7 @@ export default function RandomGoldenFlashBurstOverlay() {
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(${publicAssetUrl('assets/generated/golden-flash-overlay.dim_1920x1080.png')})`,
+          backgroundImage: `url(${'/assets/generated/golden-flash-overlay.dim_1920x1080.png')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(3) contrast(2) saturate(1.5)',

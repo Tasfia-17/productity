@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { publicAssetUrl } from '@/utils/publicAssetUrl';
 
 export default function HaloCursor() {
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -32,7 +31,7 @@ export default function HaloCursor() {
             }}
         >
             <img
-                src={publicAssetUrl('assets/generated/halo-cursor-ring.dim_512x512.png')}
+                src={'/assets/generated/halo-cursor-ring.dim_512x512.png')}
                 alt=""
                 className="w-16 h-16 opacity-60"
             />

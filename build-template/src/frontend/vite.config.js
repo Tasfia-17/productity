@@ -4,8 +4,8 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // Use root-absolute base for Vercel, relative base for static/subdirectory deployments
-  base: process.env.VERCEL || process.env.VERCEL_URL ? '/' : './',
+  // Always use relative base for maximum compatibility
+  base: './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -14,6 +14,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    assetsDir: 'assets',
   },
   server: {
     port: 3000,
