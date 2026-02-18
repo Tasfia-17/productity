@@ -1,0 +1,115 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Temple of Productivi-Tea: curtain onboarding reliability, morphing-section scroll fix, and infinite repeating page",
+  "requirements": [
+    {
+      "id": "REQ-50",
+      "summary": "Make the curtain intro overlay reliably topmost, block interaction/scroll until dismissed, and show once per user visit (not permanently across visits).",
+      "acceptanceCriteria": [
+        "On a fresh app entry, the curtain overlay is visible and blocks interaction/scroll until the user clicks/taps it to reveal the site.",
+        "After dismissing the curtain, it does not reappear again during the same visit, including during normal re-renders.",
+        "When the user leaves and later returns to the app (a new visit), the curtain appears again.",
+        "The curtain overlay renders above all existing overlays (cameos, micro-cameos, flash bursts, popups) until dismissed.",
+        "Dismissing the curtain restores scrolling and interactions without leaving the page stuck in a no-scroll state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useCurtainIntroFlag.ts",
+          "operation": "modify",
+          "description": "Change the curtain dismissal persistence from localStorage (cross-visit) to a visit-scoped mechanism (e.g., sessionStorage) so it shows again on a later return while still remaining dismissed for the current active visit."
+        },
+        {
+          "path": "frontend/src/components/intro/CurtainIntroOverlay.tsx",
+          "operation": "modify",
+          "description": "Harden overlay stacking and scroll-lock cleanup: ensure the curtain uses an app-wide highest z-index, consistently blocks interaction/scroll while mounted, and always removes any scroll-lock state after dismissal/unmount (including edge cases like rapid clicks or component unmount timing)."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Adjust/verify the global curtain scroll-lock styles (e.g., the class applied to body/html) so they cannot accidentally persist after dismissal; ensure the lock only applies while the curtain is mounted."
+        },
+        {
+          "path": "frontend/src/components/TempleLayout.tsx",
+          "operation": "modify",
+          "description": "Wire the updated visit-scoped curtain flag and ensure the curtain overlay mounts before/above other overlays to guarantee topmost rendering on app entry."
+        }
+      ]
+    },
+    {
+      "id": "REQ-51",
+      "summary": "Resolve scrolling getting stuck in mid-page morphing-border sections across all shapes while preserving pointer interactions and existing overlays.",
+      "acceptanceCriteria": [
+        "The user can continuously scroll from the top of the page to the bottom without the scroll becoming ‘stuck’ in the middle morphing-border areas.",
+        "The issue is resolved across all border shapes produced by the scroll-driven morphing system.",
+        "Pointer interactions inside the affected sections continue to work (buttons, forms, accordions, etc.).",
+        "No existing cameo/flash behaviors are changed as part of this fix."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/departments/DepartmentSectionShell.tsx",
+          "operation": "modify",
+          "description": "Update the morphing-border wrapper(s) to prevent them from intercepting/locking scroll (especially on touch devices) across clip-path shape changes; ensure scroll gestures pass through while keeping child pointer interactions working (e.g., apply appropriate touch-action / pointer-event boundaries on wrapper layers)."
+        },
+        {
+          "path": "frontend/src/components/OrnateMorphingSectionFrame.tsx",
+          "operation": "modify",
+          "description": "Apply the same scroll-safety fixes to the onboarding morphing frame (clip-path wrapper) so it never blocks scrolling regardless of active border shape."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add/adjust any global CSS helpers needed to keep scrolling smooth through clip-path/morphing sections (e.g., a shared class that enforces vertical pan gesture support) without altering cameo/flash overlay styles."
+        }
+      ]
+    },
+    {
+      "id": "REQ-52",
+      "summary": "Implement infinite repeat of the entire single-page content by appending full copies as the user approaches the bottom, with performance mitigation.",
+      "acceptanceCriteria": [
+        "As the user approaches the bottom of the currently-rendered content, additional copies of the full page content are appended automatically to extend the scroll indefinitely.",
+        "The repeated content preserves the same ordering as the original page (onboarding at the top of each repeated block, then departments, then media, then appendix, etc.).",
+        "The infinite-repeat behavior does not break global overlays/features (Jesus/Satan/Kanye/Trump cameos, Jesus micro-cameos, random flash bursts, popup memes, background audio).",
+        "The page remains performant enough to scroll smoothly for an extended time (no immediate runaway/unbounded DOM growth without any mitigation)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/TempleLayout.tsx",
+          "operation": "modify",
+          "description": "Refactor the main long-page content into a repeatable block and render multiple sequential blocks; keep the app as a single route/page and ensure only the first block uses navigation anchor ids to avoid duplicate ids while still repeating the visible content order."
+        },
+        {
+          "path": "frontend/src/hooks/useInfinitePageRepeat.ts",
+          "operation": "create",
+          "description": "Create a hook that appends a new full-content block when a bottom sentinel nears/enters view (e.g., via IntersectionObserver), and includes a DOM growth mitigation strategy (cap the number of rendered blocks and, if removing older blocks, compensate scroll position to avoid jarring jumps)."
+        },
+        {
+          "path": "frontend/src/components/InfiniteRepeatBlocks.tsx",
+          "operation": "create",
+          "description": "Create a small coordinator component that uses the infinite-repeat hook, renders the repeated content blocks in order, provides the bottom sentinel, and exposes any needed refs for measuring/removal (wired from TempleLayout; no new routes)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-53",
+      "summary": "Preserve all existing cameo behaviors unchanged while implementing the curtain, scroll fix, and infinite repeat.",
+      "acceptanceCriteria": [
+        "Behavior, timing, and dismissal rules for the multi-figure cameo overlay remain the same as before the changes.",
+        "Behavior and dismissal rules for the Jesus micro-cameo overlay remain the same as before the changes.",
+        "Random golden flash burst behavior remains the same as before the changes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/TempleLayout.tsx",
+          "operation": "modify",
+          "description": "Ensure the infinite-repeat refactor does not change cameo/micro-cameo/flash mounting order or props; keep existing overlay components wired exactly as before and validate z-index relationships (curtain remains above, others remain unchanged relative to each other)."
+        },
+        {
+          "path": "frontend/src/hooks/useInfinitePageRepeat.ts",
+          "operation": "modify",
+          "description": "If needed after integration testing, adjust only the repeat/windowing logic to avoid unintended side effects on overlay behaviors (e.g., avoid triggering additional global overlay mounts/unmounts); do not alter cameo hooks/components themselves."
+        }
+      ]
+    }
+  ]
+}

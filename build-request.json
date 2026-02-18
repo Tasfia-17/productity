@@ -1,0 +1,105 @@
+{
+  "kind": "build_request",
+  "title": "Fix curtain onboarding display, restore scroll in morphing-border sections, and implement never-ending infinite page repeat",
+  "projectName": "Temple of Productivi-Tea",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-50",
+      "text": "Fix the intro curtain onboarding behavior so the blood-red/gold 3D curtain overlay reliably appears above everything on app entry, and is shown once per user “visit” (i.e., it should reappear when the user returns to the app later), while still not reappearing repeatedly during the same active visit after it has been dismissed.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "show every time they visit the app",
+          "show only once per browser",
+          "the curtain is like onboarding before entering the main app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On a fresh app entry, the curtain overlay is visible and blocks interaction/scroll until the user clicks/taps it to reveal the site.",
+        "After dismissing the curtain, it does not reappear again during the same visit, including during normal re-renders.",
+        "When the user leaves and later returns to the app (a new visit), the curtain appears again.",
+        "The curtain overlay renders above all existing overlays (cameos, micro-cameos, flash bursts, popups) until dismissed.",
+        "Dismissing the curtain restores scrolling and interactions without leaving the page stuck in a no-scroll state."
+      ]
+    },
+    {
+      "id": "REQ-51",
+      "text": "Fix the scrolling bug where certain mid-page geometric/morphing-border sections prevent scrolling, ensuring the long single-page layout remains fully scrollable and interactive regardless of current border shape (triangle/pentagon/hexagon/octagon/circle).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "we have all all the pages in different boarders some i can't scrool fix it",
+          "certain sections of the long single‑page layout stop scrolling",
+          "geometric‑border ones near the middle"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The user can continuously scroll from the top of the page to the bottom without the scroll becoming ‘stuck’ in the middle morphing-border areas.",
+        "The issue is resolved across all border shapes produced by the scroll-driven morphing system.",
+        "Pointer interactions inside the affected sections continue to work (buttons, forms, accordions, etc.).",
+        "No existing cameo/flash behaviors are changed as part of this fix."
+      ]
+    },
+    {
+      "id": "REQ-52",
+      "text": "Implement true infinite scroll for the entire single-page experience by auto-duplicating/repeating the full long-page content in order as the user scrolls, so the page effectively never ends.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "he entire long page should infinitely auto‑duplicate its own sections as the user scrolls",
+          "make sure tthis page never ends keep reapeating"
+        ]
+      },
+      "acceptanceCriteria": [
+        "As the user approaches the bottom of the currently-rendered content, additional copies of the full page content are appended automatically to extend the scroll indefinitely.",
+        "The repeated content preserves the same ordering as the original page (onboarding at the top of each repeated block, then departments, then media, then appendix, etc.).",
+        "The infinite-repeat behavior does not break global overlays/features (Jesus/Satan/Kanye/Trump cameos, Jesus micro-cameos, random flash bursts, popup memes, background audio).",
+        "The page remains performant enough to scroll smoothly for an extended time (no immediate runaway/unbounded DOM growth without any mitigation)."
+      ]
+    },
+    {
+      "id": "REQ-53",
+      "text": "Keep all existing cameo behaviors unchanged while implementing REQ-50 through REQ-52, including: four-figure scroll-depth cameo system (Jesus/Satan/Kanye/Trump), Jesus micro-cameo overlay, and random golden flash burst overlay.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "keep all cameo behaviors (Jesus/Satan/Kanye/Trump + micro‑cameos + flashes) exactly as they are now and only fix the scrolling + curtain logic"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Behavior, timing, and dismissal rules for the multi-figure cameo overlay remain the same as before the changes.",
+        "Behavior and dismissal rules for the Jesus micro-cameo overlay remain the same as before the changes.",
+        "Random golden flash burst behavior remains the same as before the changes."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend must remain a single long scrolling page (no new routes).",
+    "Do not modify files under frontend/src/components/ui (compose existing UI components instead).",
+    "Do not modify immutable hook paths listed in SYSTEM_CONTEXT (use safe wrapper hooks/components if needed).",
+    "No new backend features are required for these changes."
+  ],
+  "nonGoals": [
+    "Adding any new departments/micro-modules/content beyond the infinite repetition behavior.",
+    "Changing the copy/tone of existing sections.",
+    "Changing cameo trigger thresholds, animations, or line pools (only preserve existing behavior).",
+    "Introducing server-side pagination, WebSockets, or backend-driven infinite scroll."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

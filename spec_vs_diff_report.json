@@ -1,0 +1,45 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T07:53:21.336Z",
+  "summary": "Diff implements a curtain overlay with session-based dismissal and strong z-index/scroll-lock handling, adds touch-action/pointer-events adjustments in morphing-frame sections to address scroll sticking, and introduces an infinite-repeat mechanism via IntersectionObserver. However, the infinite-repeat behavior is capped at 3 blocks, so the page does not \"never end\" as required.",
+  "missing_requirements": [
+    {
+      "id": "REQ-52",
+      "requirement": "Implement true infinite scroll for the entire single-page experience by auto-duplicating/repeating the full long-page content in order as the user scrolls, so the page effectively never ends.",
+      "reason": "The new infinite-repeat hook hard-caps appended content to 3 blocks (MAX_BLOCKS = 3), which prevents the page from extending indefinitely. The requirement calls for a never-ending experience with performance mitigation (e.g., recycling), not a fixed cap.",
+      "evidence": [
+        "frontend/src/hooks/useInfinitePageRepeat.ts"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Hard cap limiting infinite repeat to 3 total blocks (MAX_BLOCKS = 3), stopping further appends instead of maintaining a never-ending scroll via recycling/mitigation.",
+      "reason": "BuildRequest asks for a never-ending infinite repeat with mitigation against runaway DOM growth; introducing a fixed maximum number of repeats prevents the \"never ends\" behavior.",
+      "evidence": [
+        "frontend/src/hooks/useInfinitePageRepeat.ts"
+      ]
+    },
+    {
+      "description": "Scroll-phase-based typography variation in DepartmentSectionShell (dynamic font stack and letter spacing changes based on scrollPhase).",
+      "reason": "REQ-51 only requests restoring scroll/interactivity in morphing-border sections; changing typography/letter-spacing behavior is not requested and may alter existing section presentation beyond the bug fix scope.",
+      "evidence": [
+        "frontend/src/components/departments/DepartmentSectionShell.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/InfiniteRepeatBlocks.tsx",
+    "frontend/src/components/OrnateMorphingSectionFrame.tsx",
+    "frontend/src/components/TempleLayout.tsx",
+    "frontend/src/components/departments/DepartmentSectionShell.tsx",
+    "frontend/src/components/intro/CurtainIntroOverlay.tsx",
+    "frontend/src/hooks/useCurtainIntroFlag.ts",
+    "frontend/src/hooks/useInfinitePageRepeat.ts",
+    "frontend/src/index.css",
+    "project_state.json"
+  ]
+}

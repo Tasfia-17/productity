@@ -1,0 +1,93 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T07:53:21.343Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-50",
+        "summary": "Fix the intro curtain onboarding behavior so the blood-red/gold 3D curtain overlay reliably appears above everything on app entry, and is shown once per user “visit” (i.e., it should reappear when the user returns to the app later), while still not reappearing repeatedly during the same active visit after it has been dismissed.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useCurtainIntroFlag.ts",
+          "frontend/src/components/intro/CurtainIntroOverlay.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/TempleLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useCurtainIntroFlag.ts",
+          "frontend/src/components/intro/CurtainIntroOverlay.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/TempleLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-51",
+        "summary": "Fix the scrolling bug where certain mid-page geometric/morphing-border sections prevent scrolling, ensuring the long single-page layout remains fully scrollable and interactive regardless of current border shape (triangle/pentagon/hexagon/octagon/circle).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/departments/DepartmentSectionShell.tsx",
+          "frontend/src/components/OrnateMorphingSectionFrame.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/departments/DepartmentSectionShell.tsx",
+          "frontend/src/components/OrnateMorphingSectionFrame.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-52",
+        "summary": "Implement true infinite scroll for the entire single-page experience by auto-duplicating/repeating the full long-page content in order as the user scrolls, so the page effectively never ends.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/TempleLayout.tsx",
+          "frontend/src/hooks/useInfinitePageRepeat.ts",
+          "frontend/src/components/InfiniteRepeatBlocks.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/TempleLayout.tsx",
+          "frontend/src/hooks/useInfinitePageRepeat.ts",
+          "frontend/src/components/InfiniteRepeatBlocks.tsx"
+        ]
+      },
+      {
+        "id": "REQ-53",
+        "summary": "Keep all existing cameo behaviors unchanged while implementing REQ-50 through REQ-52, including: four-figure scroll-depth cameo system (Jesus/Satan/Kanye/Trump), Jesus micro-cameo overlay, and random golden flash burst overlay.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/TempleLayout.tsx",
+          "frontend/src/hooks/useInfinitePageRepeat.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/TempleLayout.tsx",
+          "frontend/src/hooks/useInfinitePageRepeat.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/InfiniteRepeatBlocks.tsx",
+    "frontend/src/components/OrnateMorphingSectionFrame.tsx",
+    "frontend/src/components/TempleLayout.tsx",
+    "frontend/src/components/departments/DepartmentSectionShell.tsx",
+    "frontend/src/components/intro/CurtainIntroOverlay.tsx",
+    "frontend/src/hooks/useCurtainIntroFlag.ts",
+    "frontend/src/hooks/useInfinitePageRepeat.ts",
+    "frontend/src/index.css",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
