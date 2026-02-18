@@ -2,18 +2,36 @@ import { ReactNode } from 'react';
 
 interface MicroModuleShellProps {
     title: string;
-    emoji?: string;
     children: ReactNode;
+    emoji?: string;
 }
 
 export default function MicroModuleShell({ title, emoji, children }: MicroModuleShellProps) {
     return (
-        <div className="border-8 border-temple-gold/60 rounded-lg p-8 bg-gradient-to-br from-amber-50 to-yellow-50 shadow-xl my-12">
-            <h3 className="text-2xl md:text-3xl font-serif font-bold text-temple-dark text-center mb-6">
-                {emoji && <span className="mr-3">{emoji}</span>}
-                {title}
-            </h3>
-            {children}
+        <div className="relative my-8">
+            {/* Ornate micro border */}
+            <div className="relative border-4 border-temple-gold/60 rounded-md shadow-lg bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 p-6">
+                {/* Ancient pattern overlay */}
+                <div 
+                    className="absolute inset-0 opacity-10 pointer-events-none rounded-md"
+                    style={{
+                        backgroundImage: 'url(/assets/generated/ancient-border-pattern-tile.dim_1024x1024.png)',
+                        backgroundRepeat: 'repeat',
+                        backgroundSize: '48px 48px'
+                    }}
+                />
+                
+                {/* Title */}
+                <h3 className="relative text-xl md:text-2xl font-ancient text-temple-dark mb-4 tracking-wide">
+                    {emoji && <span className="mr-2">{emoji}</span>}
+                    {title}
+                </h3>
+                
+                {/* Content */}
+                <div className="relative">
+                    {children}
+                </div>
+            </div>
         </div>
     );
 }
