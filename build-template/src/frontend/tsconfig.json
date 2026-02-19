@@ -23,5 +23,5 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "build", "*.config.js", "eslint-rules/**/*"]
+  "exclude": ["node_modules", "dist", "build", "*.config.js", "eslint-rules/**/*", "scripts/**/*"]
 }

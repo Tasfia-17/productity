@@ -1,10 +1,13 @@
 /**
- * Centralized asset paths using Vite's BASE_URL for proper deployment resolution.
+ * Centralized asset paths for proper deployment resolution.
  * All generated media files are referenced from the public/assets/generated directory.
  * This ensures assets work correctly in both Vercel deployments and local/static builds.
  */
 
-const BASE_URL = import.meta.env.BASE_URL || '/';
+// Use process.env for Next.js or fallback to root path
+const BASE_URL = typeof process !== 'undefined' && process.env.BASE_URL 
+  ? process.env.BASE_URL 
+  : (typeof window !== 'undefined' && (window as any).__BASE_URL__) || '/';
 
 // Helper to build asset URLs
 const assetUrl = (path: string) => `${BASE_URL}assets/generated/${path}`;

@@ -9,6 +9,9 @@ import ApologyLoadingOverlay from './ApologyLoadingOverlay';
 import ConfettiBurst from './ConfettiBurst';
 import { toast } from 'sonner';
 
+// Helper to build asset URLs
+const assetUrl = (path: string) => `/assets/generated/${path}`;
+
 interface MicroFeaturesProviderProps {
     children: ReactNode;
 }
@@ -43,8 +46,8 @@ export default function MicroFeaturesProvider({ children }: MicroFeaturesProvide
                     setShowCaptcha(event.show);
                     break;
                 case 'audio':
-                    // Play audio - build URL using BASE_URL
-                    const audio = new Audio(publicAssetUrl(`assets/generated/${event.sound}.mp3`));
+                    // Play audio - build URL using assetUrl
+                    const audio = new Audio(assetUrl(`${event.sound}.mp3`));
                     audio.play().catch(() => {});
                     break;
             }
