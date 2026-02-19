@@ -152,17 +152,7 @@ export default function TempleLayout() {
                 {/* Footer */}
                 <footer className="relative z-20 py-8 text-center text-sm text-muted-foreground border-t border-temple-gold/20">
                     <p className="flex items-center justify-center gap-2 flex-wrap">
-                        <span>© {new Date().getFullYear()}</span>
-                        <span>•</span>
-                        <span>Built with ❤️ using</span>
-                        <a 
-                            href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== 'undefined' ? window.location.hostname : 'temple-productivi-tea')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-temple-gold hover:text-temple-gold-light transition-colors underline"
-                        >
-                            caffeine.ai
-                        </a>
+                        <span>© {new Date().getFullYear()} Temple of Productivi-Tea</span>
                     </p>
                 </footer>
 
