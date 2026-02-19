@@ -1,69 +1,46 @@
-# Temple of Productivi-Tea
+# Temple of Productivi-Tea - Next.js Version
 
-A satirical procrastination-themed productivity web application built with React, Vite, and TypeScript.
+A satirical procrastination-themed productivity web application built with Next.js, React, and TypeScript.
 
-## Deployment
-
-### Deploy to Vercel
-
-1. Push your code to GitHub
-2. Import the repository in Vercel
-3. Vercel will automatically detect the configuration from `vercel.json`
-4. Deploy!
-
-Alternatively, use the Vercel CLI:
+## Quick Start
 
 ```bash
-npm i -g vercel
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000)
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+This creates a static export in the `out/` directory that can be deployed anywhere.
+
+## Deploy
+
+### Vercel
+```bash
 vercel
 ```
 
-### Deploy to Netlify
+### Netlify
+Drag and drop the `out/` folder to Netlify
 
-```bash
-cd build-template/src/frontend
-pnpm install
-pnpm run build:skip-bindings
-```
-
-Then drag and drop the `build-template/src/frontend/dist` folder to Netlify.
-
-### Deploy to Other Platforms
-
-Build the app:
-
-```bash
-cd build-template/src/frontend
-pnpm install
-pnpm run build:skip-bindings
-```
-
-The production build will be in `build-template/src/frontend/dist/`. Deploy this folder to any static hosting service.
-
-## Local Development
-
-```bash
-cd build-template/src/frontend
-pnpm install
-pnpm start
-```
-
-The app will be available at http://localhost:3000
+### Any Static Host
+Upload the `out/` folder contents
 
 ## Features
 
-- Satirical productivity app with procrastination theme
-- 50+ interactive components and sections
-- Custom animations and microfeatures
-- Achievement system
-- Responsive design with Tailwind CSS
-- shadcn/ui component library
-
-## Tech Stack
-
-- React 18
-- Vite
+- 155+ React components
+- Complete shadcn/ui library
+- Tailwind CSS with custom Temple theme
 - TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Internet Computer (ICP) backend support
+- Static export ready
+- All interactive features functional
+
+## Repository
+
+https://github.com/Tasfia-17/productity

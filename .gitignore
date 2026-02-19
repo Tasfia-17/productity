@@ -2,32 +2,28 @@
 node_modules/
 .pnpm-store/
 
-# Build outputs
-dist/
-build/
-.dfx/
+# Next.js
+/.next/
+/out/
 
-# Environment
-.env
-.env.local
-.env.*.local
+# Production
+/build
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
+# Misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# Logs
-*.log
+# Debug
 npm-debug.log*
-pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Temporary files
-*.tmp
-.cache/
+# Local env files
+.env*.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
